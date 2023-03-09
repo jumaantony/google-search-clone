@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {NavLink }from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const links =[
     {url: '/search', text: '🔍 All'},

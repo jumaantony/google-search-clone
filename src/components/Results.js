@@ -9,13 +9,13 @@ const Results = () => {
   const location =useLocation();
 
   useEffect(() => {
-    getResults(`/search/?q=${searchTerm}`)
-    if(searchTerm){
-      if(location.pathname === '/search') {
+    if (searchTerm !== '') {
+      if (location.pathname === '/search') {
         getResults(`?q=${searchTerm}`)
-      } 
+      }
     }
-  }, [searchTerm, location.pathname, getResults]);
+      
+  }, [searchTerm, location.pathname]);
 
   if(isLoading) return <Loading />
   console.log(location.pathname)
@@ -25,7 +25,7 @@ const Results = () => {
       
       return (
         <div className='flex flex-wrap justify-between space-y-6 sm:px-56'>
-          {results?.data?.map(({title, url, snippet}, index) => (
+          {results?.results?.map(({title, url, description}, index) => (
             <div key={index} className='md:w-2/5 w-full'>
               <a href={url} target='_blank' rel='noreferrer'>
                 <p className='text-lg hover:underline dark:text-blue-300 text-blue-700'>
@@ -37,7 +37,7 @@ const Results = () => {
                 </p>
 
                 <p className='pt-4 text-justify'>
-                  {snippet.slice(0,80)}
+                  {description.slice(0,80)}
                 </p>
                 
               </a>
@@ -45,27 +45,27 @@ const Results = () => {
           ))}
         </div>
       );
-      
-    case '/news':
+
+    case '/images':
       return(
         <div>
-          <h3> This feature has not yet been implemented</h3>
+          <h1 className='font-bold'> This feature has not been implemented</h1>
         </div>
       )
     
-      case '/images':
-      return(
-        <div>
-          <h3> This feature has not yet been implemented</h3>
-        </div>
-      )
+    case '/news':
+    return(
+      <div>
+        <h1 className='font-bold'> This feature has not been implemented</h1>
+      </div>
+    )
 
-      case '/videos':
-      return(
-        <div>
-          <h3> This feature has not yet been implemented</h3>
-        </div>
-      )
+    case '/videos':
+    return(
+      <div>
+        <h1 className='font-bold'> This feature has not been implemented</h1>
+      </div>
+    )
       
     default:
       return 'ERROR;'

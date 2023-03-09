@@ -1,12 +1,12 @@
 import React, {createContext, useContext, useState} from 'react';
 
 const ResultContext = createContext();
-const baseUrl = 'https://google-search72.p.rapidapi.com';
+const baseUrl = 'https://google-search74.p.rapidapi.com/';
 
 export const ResultContextProvider = ({children }) => {
     const [results, setResults ] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('JavaScript mastery');
+    const [searchTerm, setSearchTerm] = useState('');
 
     // /videos, /search, /images
     const getResults = async(type) => {
@@ -15,8 +15,8 @@ export const ResultContextProvider = ({children }) => {
         const response = await fetch(`${baseUrl}${type}`,{
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'c3b2a1ec3fmsh8b20efd31e48736p10a5e8jsn981b52011e46',
-                'X-RapidAPI-Host': 'google-search72.p.rapidapi.com'
+                'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+                'X-RapidAPI-Host': 'google-search74.p.rapidapi.com'
             },
         });
 
