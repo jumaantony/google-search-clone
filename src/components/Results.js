@@ -10,8 +10,12 @@ const Results = () => {
 
   useEffect(() => {
     getResults(`/search/?q=${searchTerm}`)
-    
-  }, [searchTerm, location.pathname]);
+    if(searchTerm){
+      if(location.pathname === '/search') {
+        getResults(`?q=${searchTerm}`)
+      } 
+    }
+  }, [searchTerm, location.pathname, getResults]);
 
   if(isLoading) return <Loading />
   console.log(location.pathname)
@@ -41,6 +45,27 @@ const Results = () => {
           ))}
         </div>
       );
+      
+    case '/news':
+      return(
+        <div>
+          <h3> This feature has not yet been implemented</h3>
+        </div>
+      )
+    
+      case '/images':
+      return(
+        <div>
+          <h3> This feature has not yet been implemented</h3>
+        </div>
+      )
+
+      case '/videos':
+      return(
+        <div>
+          <h3> This feature has not yet been implemented</h3>
+        </div>
+      )
       
     default:
       return 'ERROR;'
